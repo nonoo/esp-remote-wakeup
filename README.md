@@ -9,7 +9,7 @@ the network adapter, it's not a configuration issue). ESP Wakeup Keypress is
 the solution I came up with - I can make a GET request to the ESP device and
 it presses a key for me.
 
-# Usage
+## Usage
 
 - Run `00-init.sh`, this will download and install ESP-IDF and all its
   dependencies
@@ -41,7 +41,7 @@ pressed on your computer. You may need to change the `pass=wakeup` in the URL
 if you've modified CONFIG_ESP_WAKEUP_KEYPRESS_HTTPD_PASSWORD in the
 `sdkconfig` file.
 
-# Troubleshooting
+## Troubleshooting
 
 If your computer does not wake up for the virtual keypress, then create this
 shell script at `/lib/systemd/system-sleep/00-esp-wakeup-enable.sh`:

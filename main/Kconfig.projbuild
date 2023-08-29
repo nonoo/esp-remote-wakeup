@@ -1,0 +1,29 @@
+menu "ESP Wakeup Keypress"
+
+    config ESP_WAKEUP_KEYPRESS_WIFI_SSID
+        depends on !EXAMPLE_WIFI_SSID_PWD_FROM_STDIN
+        string "WiFi SSID"
+        default "ssid"
+        help
+            SSID (network name) for the example to connect to.
+
+    config ESP_WAKEUP_KEYPRESS_WIFI_PASSWORD
+        string "Wi-Fi Password"
+        default "password"
+        help
+            Wi-Fi password to use.
+            Can be left blank if the network has no security set.
+
+    config ESP_WAKEUP_KEYPRESS_HTTPD_PASSWORD
+        string "HTTPD password"
+        default "wakeup"
+        help
+            Password for HTTP server authentication in the query URL.
+
+    config ESP_WAKEUP_KEYPRESS_LED_STRIP_GPIO_NUM
+        int "LED strip GPIO num"
+        default 48
+        help
+            GPIO number of RMT LED strip on the devboard
+
+endmenu

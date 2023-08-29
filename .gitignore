@@ -1,0 +1,6 @@
+/build
+/sdkconfig
+/sdkconfig.old
+/.vscode/*.log
+/defport-*
+/esp-idf-tools

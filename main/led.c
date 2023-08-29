@@ -53,7 +53,7 @@ void led_handle_wifi_connected(void) {
 }
 
 static void led_task(void *pvParameters) {
-	ESP_LOGI(TAG, "usb task started");
+	ESP_LOGI(TAG, "led task started");
 
 	bool keypress_on = false;
 	bool wifi_disconnected = false;

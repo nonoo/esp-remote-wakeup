@@ -1,7 +1,7 @@
 # ESP Wakeup Keypress
 
-A firmware for ESP32 devices to act as a USB keyboard and press a key when a
-HTTP request is received.
+A firmware for ESP32 devices to act as a USB keyboard and wake up the computer
+when a HTTP request is received.
 
 The story behind this is that my computer won't power on for Wake on LAN magic
 packets for some unkown Linux/UEFI reason (all needed settings are enabled for

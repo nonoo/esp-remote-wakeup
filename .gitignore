@@ -4,3 +4,4 @@
 /.vscode/*.log
 /defport-*
 /esp-idf-tools
+/managed_components

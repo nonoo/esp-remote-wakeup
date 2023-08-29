@@ -5,7 +5,7 @@ menu "ESP Wakeup Keypress"
         string "WiFi SSID"
         default "ssid"
         help
-            SSID (network name) for the example to connect to.
+            SSID (network name) to connect to.
 
     config ESP_WAKEUP_KEYPRESS_WIFI_PASSWORD
         string "Wi-Fi Password"

@@ -7,12 +7,6 @@ scriptdir=`pwd`
 . .common.inc.sh
 
 parse_args $@
-
-if [ "$kill" = 1 ]; then
-	kill_monitor
-	exit 0
-fi
-
 get_idf
 
 while [ 1 ]; do

@@ -21,9 +21,6 @@ parse_args() {
 			p)
 				port=${OPTARG}
 				;;
-			k)
-				kill=1
-				;;
 			f)
 				force=1
 				;;

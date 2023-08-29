@@ -1,21 +1,4 @@
-esp_idf_hash=cbce221e88d52665523093b2b6dd0ebe3f1243f1
-
 export IDF_TOOLS_PATH=`pwd`/esp-idf-tools
-
-esp_idf_is_up_to_date() {
-	if [ ! -d esp-idf ]; then
-		return 1 # False
-	fi
-
-	cd esp-idf
-	curr_esp_idf_hash=`git rev-parse HEAD`
-	cd ..
-
-	if [ $curr_esp_idf_hash != $esp_idf_hash ]; then
-		return 1 # False
-	fi
-	return 0 # True
-}
 
 get_idf() {
 	export IDF_PATH=$PWD/esp-idf

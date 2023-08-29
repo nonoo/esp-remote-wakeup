@@ -40,3 +40,24 @@ Now if you press the button on your board, or open the URL
 pressed on your computer. You may need to change the `pass=wakeup` in the URL
 if you've modified CONFIG_ESP_WAKEUP_KEYPRESS_HTTPD_PASSWORD in the
 `sdkconfig` file.
+
+# Troubleshooting
+
+If your computer does not wake up for the virtual keypress, then create this
+shell script at `/lib/systemd/system-sleep/00-esp-wakeup-enable.sh`:
+
+```bash
+#!/bin/bash
+
+# Action script to enable wake after suspend by keyboard or mouse
+
+if [ "$1" = post ]; then
+    KB="$(lsusb -tvv | grep -A 1 303a:4004 | awk 'NR==2 {print $1}')"
+    echo enabled > ${KB}/power/wakeup
+fi
+
+if [ "$1" = pre ]; then
+    KB="$(lsusb -tvv | grep -A 1 303a:4004 | awk 'NR==2 {print $1}')"
+    echo enabled > ${KB}/power/wakeup
+fi
+```

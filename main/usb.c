@@ -83,6 +83,9 @@ static void usb_task(void *pvParameters) {
 				tud_hid_keyboard_report(HID_ITF_PROTOCOL_KEYBOARD, 0, keycode);
 				vTaskDelay(pdMS_TO_TICKS(50));
 				tud_hid_keyboard_report(HID_ITF_PROTOCOL_KEYBOARD, 0, NULL);
+
+				tud_remote_wakeup();
+
 				led_handle_keypress_off();
 			} else
 				ESP_LOGI(TAG, "not mounted, not sending keypress");

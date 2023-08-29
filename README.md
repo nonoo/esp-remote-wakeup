@@ -21,6 +21,9 @@ it presses a key for me.
   - CONFIG_ESP_WAKEUP_KEYPRESS_HTTPD_PASSWORD
   - CONFIG_ESP_WAKEUP_KEYPRESS_LED_STRIP_GPIO_NUM
 
+I'm using a ESP32-S3-DevKitC which has the LED strip at GPIO48, but the latest
+release of the devkit (ESP32-S3-DevKitC-1) has it on GPIO38.
+
 - Run `01-build.sh`
 - Create the file `defport-flash` and put `/dev/ttyACM0` into it (or the port
   where your ESP can be programmed)

@@ -7,7 +7,7 @@ The story behind this is that my computer won't power on for Wake on LAN magic
 packets for some unkown Linux/UEFI reason (all needed settings are enabled for
 the network adapter, it's not a configuration issue). ESP Wakeup Keypress is
 the solution I came up with - I can make a GET request to the ESP device and
-it presses a key for me.
+it wakes up the computer for me.
 
 ## Usage
 
@@ -36,8 +36,8 @@ release of the devkit (ESP32-S3-DevKitC-1) has it on GPIO38.
 - Press the reset button on your board to exit bootloader mode
 
 Now if you press the button on your board, or open the URL
-`http://esp-wakeup-keypress.localdomain/wakeup?pass=wakeup` an `a` key will be
-pressed on your computer. You may need to change the `pass=wakeup` in the URL
+`http://esp-wakeup-keypress.localdomain/wakeup?pass=wakeup` an wakeup signal is
+sent to your computer. You may need to change the `pass=wakeup` in the URL
 if you've modified CONFIG_ESP_WAKEUP_KEYPRESS_HTTPD_PASSWORD in the
 `sdkconfig` file.
 

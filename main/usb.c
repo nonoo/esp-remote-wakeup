@@ -77,14 +77,15 @@ static void usb_task(void *pvParameters) {
 			xEventGroupClearBits(usb_event_group, USB_EVENT_KEYPRESS);
 
 			if (tud_mounted()) {
-				ESP_LOGI(TAG, "sending keypress");
+				ESP_LOGI(TAG, "sending wakeup signal");
 				led_handle_keypress_on();
-				uint8_t keycode[6] = { HID_KEY_A };
-				tud_hid_keyboard_report(HID_ITF_PROTOCOL_KEYBOARD, 0, keycode);
-				vTaskDelay(pdMS_TO_TICKS(50));
-				tud_hid_keyboard_report(HID_ITF_PROTOCOL_KEYBOARD, 0, NULL);
 
 				tud_remote_wakeup();
+
+				// uint8_t keycode[6] = { HID_KEY_A };
+				// tud_hid_keyboard_report(HID_ITF_PROTOCOL_KEYBOARD, 0, keycode);
+				vTaskDelay(pdMS_TO_TICKS(50));
+				// tud_hid_keyboard_report(HID_ITF_PROTOCOL_KEYBOARD, 0, NULL);
 
 				led_handle_keypress_off();
 			} else

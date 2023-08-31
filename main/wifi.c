@@ -78,20 +78,29 @@ static esp_err_t wifi_connect(void) {
 		},
 	};
 
-	ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config));
 	esp_err_t ret = ESP_FAIL;
 	while (ret != ESP_OK) {
+		ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config));
 		ESP_LOGI(TAG, "connecting to ssid: %s...", wifi_config.sta.ssid);
 		ret = esp_wifi_connect();
 		if (ret != ESP_OK) {
-			ESP_LOGE(TAG, "connect failed, ret:%x", ret);
+			ESP_LOGE(TAG, "connect failed, ret:%x %s", ret, esp_err_to_name(ret));
 			vTaskDelay(pdMS_TO_TICKS(5000));
 			continue;
 		}
 
-		ESP_LOGI(TAG, "waiting for ip...");
-		xSemaphoreTake(wifi_semph_get_ip4_addrs, portMAX_DELAY);
-		xSemaphoreTake(wifi_semph_get_ip6_addrs, portMAX_DELAY);
+		ESP_LOGI(TAG, "waiting for ip4 addr...");
+		if (xSemaphoreTake(wifi_semph_get_ip4_addrs, pdMS_TO_TICKS(10000)) == pdFALSE) {
+			ESP_LOGE(TAG, "failed to get ip4 addr");
+			esp_wifi_disconnect();
+			ret = ESP_FAIL;
+			continue;
+		}
+		ESP_LOGI(TAG, "waiting for ip6 addr...");
+		if (xSemaphoreTake(wifi_semph_get_ip6_addrs, pdMS_TO_TICKS(10000)) == pdFALSE) {
+			ESP_LOGE(TAG, "failed to get ip4 addr");
+			// Continuing anyway.
+		}
 		ESP_LOGI(TAG, "connected");
 	}
 	return ret;
@@ -111,7 +120,6 @@ void wifi_init(void) {
 	wifi_sta_netif = esp_netif_create_wifi(WIFI_IF_STA, &esp_netif_config);
 	esp_wifi_set_default_wifi_sta_handlers();
 
-	ESP_ERROR_CHECK(esp_wifi_set_storage(WIFI_STORAGE_RAM));
 	ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
 	ESP_ERROR_CHECK(esp_wifi_start());
 

@@ -76,7 +76,9 @@ static void usb_task(void *pvParameters) {
 		if (bits & USB_EVENT_KEYPRESS) {
 			xEventGroupClearBits(usb_event_group, USB_EVENT_KEYPRESS);
 
+#if !CONFIG_ESP_WAKEUP_KEYPRESS_LED_NOTIFY_MODE
 			if (tud_mounted()) {
+#endif
 				ESP_LOGI(TAG, "sending wakeup signal");
 				led_handle_keypress_on();
 
@@ -88,8 +90,10 @@ static void usb_task(void *pvParameters) {
 				// tud_hid_keyboard_report(HID_ITF_PROTOCOL_KEYBOARD, 0, NULL);
 
 				led_handle_keypress_off();
+#if !CONFIG_ESP_WAKEUP_KEYPRESS_LED_NOTIFY_MODE
 			} else
-				ESP_LOGI(TAG, "not mounted, not sending keypress");
+				ESP_LOGI(TAG, "not mounted, not sending wakeup signal");
+#endif
 		}
 	}
 }

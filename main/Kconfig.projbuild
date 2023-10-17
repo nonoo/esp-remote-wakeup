@@ -26,4 +26,10 @@ menu "ESP Wakeup Keypress"
         help
             GPIO number of RMT LED strip on the devboard
 
+    config ESP_WAKEUP_KEYPRESS_LED_NOTIFY_MODE
+        bool "LED notify mode"
+        help
+            USB wakeup is not sent when this is enabled,
+            only the LED will be lit on wakeup.
+
 endmenu

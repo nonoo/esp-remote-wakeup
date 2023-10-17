@@ -8,7 +8,12 @@
 #include <queue.h>
 
 #define LED_RMT_STRIP_RESOLUTION_HZ 10000000 // 10MHz resolution, 1 tick = 0.1us (LED strip needs a high resolution)
+#define LED_NOTIFY_MODE				0
+#if LED_NOTIFY_MODE
+#define LED_MAX_BRIGHTNESS_PERCENT	100
+#else
 #define LED_MAX_BRIGHTNESS_PERCENT	1
+#endif
 
 static const char *TAG = "led";
 
@@ -87,11 +92,23 @@ static void led_task(void *pvParameters) {
 		} else {
 			if (keypress_on) {
 				ESP_LOGI(TAG, "setting led state keypress on");
+#if LED_NOTIFY_MODE
+				for (int i = 0; i < 30; i++) {
+					led_set(0, 0, 0);
+					vTaskDelay(pdMS_TO_TICKS(100));
+					led_set(255, 255, 255);
+					vTaskDelay(pdMS_TO_TICKS(100));
+				}
+#else
 				led_set(0, 0, 255);
-				// vTaskDelay(pdMS_TO_TICKS(100));
+#endif
 			} else {
 				ESP_LOGI(TAG, "setting led state wifi connected");
+#if LED_NOTIFY_MODE
+				led_set(0, 0, 0);
+#else
 				led_set(0, 255, 0);
+#endif
 			}
 		}
 	}

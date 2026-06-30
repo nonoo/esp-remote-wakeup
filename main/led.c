@@ -5,7 +5,7 @@
 #include <esp_log.h>
 #include <driver/rmt_tx.h>
 #include <freertos/FreeRTOS.h>
-#include <queue.h>
+#include <freertos/queue.h>
 
 #define LED_RMT_STRIP_RESOLUTION_HZ 10000000 // 10MHz resolution, 1 tick = 0.1us (LED strip needs a high resolution)
 #if CONFIG_ESP_WAKEUP_KEYPRESS_LED_NOTIFY_MODE

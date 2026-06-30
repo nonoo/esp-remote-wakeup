@@ -22,7 +22,7 @@ rm -rf esp-idf-tools/dist
 
 esp-idf/tools/idf_tools.py install-python-env
 
-ENV=$scriptdir/esp-remote-wakeup/esp-idf-tools/python_env/idf5.1_py3.11_env/bin/python
+ENV=$scriptdir/esp-idf-tools/python_env/idf5.1_py3.11_env/bin/python
 $ENV -m pip install "setuptools<81" wheel
 
 echo "init done"

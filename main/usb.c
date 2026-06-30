@@ -4,7 +4,8 @@
 #include <tinyusb.h>
 #include <class/hid/hid_device.h>
 #include <esp_log.h>
-#include <event_groups.h>
+#include <freertos/FreeRTOS.h>
+#include <freertos/event_groups.h>
 
 static const char *TAG = "usb";
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-apt update ; apt install -y git nano python3 python-is-python3 python3-venv libusb-1.0-0
+apt update ; apt install -y python3 python-is-python3 python3-venv libusb-1.0-0 cmake
 
 scriptdir=${0%`basename "$0"`}
 cd $scriptdir

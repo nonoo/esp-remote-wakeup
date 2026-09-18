@@ -20,4 +20,6 @@ rm -rf esp-idf-tools/dist
 
 esp-idf/tools/idf_tools.py install-python-env
 
+${IDF_TOOLS_PATH}/python_env/*/bin/python -m pip install "setuptools<71" "ruamel.yaml<0.18"
+
 echo "init done"

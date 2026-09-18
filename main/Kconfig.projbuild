@@ -32,4 +32,10 @@ menu "ESP Wakeup Keypress"
             USB wakeup is not sent when this is enabled,
             only the LED will be lit on wakeup.
 
+    config ESP_WAKEUP_KEYPRESS_REBOOT_INTERVAL_HOURS
+        int "Reboot interval in hours"
+        default 0
+        help
+            Set to 0 to disable.
+
 endmenu

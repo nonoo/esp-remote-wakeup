@@ -3,6 +3,7 @@
 #include "gpio.h"
 #include "httpd.h"
 #include "led.h"
+#include "reboot.h"
 #include "main.h"
 
 #include <esp_log.h>
@@ -17,6 +18,7 @@ void app_main(void) {
 	usb_init();
 	wifi_init();
 	httpd_init();
+	reboot_init();
 
 	vTaskSuspend(NULL);
 }
